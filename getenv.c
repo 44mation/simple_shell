@@ -1,10 +1,10 @@
 #include "shell.h"
 
 /**
- * get_environ - Returns the copy of the environment variables as a string array
- * @info: Parameter struct containing information
+ * get_environ - copy of the environment variables
+ * @info: contain information
  * Return: Pointer to the environment variable strings
- */
+*/
 char **get_environ(info_t *info)
 {
 	if (!info->environ || info->env_changed)
@@ -21,7 +21,7 @@ char **get_environ(info_t *info)
  * @info: Parameter struct containing information
  * @var: The environment variable to remove
  * Return: 1 if variable was removed, 0 otherwise
- */
+*/
 int _unsetenv(info_t *info, char *var)
 {
 	list_t *node = info->env;
@@ -53,7 +53,7 @@ int _unsetenv(info_t *info, char *var)
  * @var: The environment variable name
  * @value: The environment variable value
  * Return: 0 on success, 1 on failure
- */
+*/
 int _setenv(info_t *info, char *var, char *value)
 {
 	char *buf = NULL;
@@ -87,4 +87,3 @@ int _setenv(info_t *info, char *var, char *value)
 	info->env_changed = 1;
 	return (0);
 }
-

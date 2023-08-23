@@ -6,7 +6,7 @@
  * @src: the source string
  * @n: the number of characters to be copied
  * Return: the pointer to the destination string
- */
+*/
 char *_strncpy(char *dest, const char *src, size_t n)
 {
 	char *original_dest = dest;
@@ -35,7 +35,7 @@ char *_strncpy(char *dest, const char *src, size_t n)
  * @src: the source string
  * @n: the maximum number of characters to be appended
  * Return: the pointer to the concatenated string
- */
+*/
 char *_strncat(char *dest, const char *src, size_t n)
 {
 	char *original_dest = dest;
@@ -63,7 +63,7 @@ char *_strncat(char *dest, const char *src, size_t n)
  * @s: the string to be parsed
  * @c: the character to look for
  * Return: a pointer to the first occurrence of c in s, or NULL if not found
- */
+*/
 char *_strchr(const char *s, char c)
 {
 	while (*s)
@@ -82,4 +82,3 @@ char *_strchr(const char *s, char c)
 
 	return (NULL);
 }
-
