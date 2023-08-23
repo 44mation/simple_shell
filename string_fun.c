@@ -56,6 +56,7 @@ char **line_to_vector(char *command, int status)
 {
 	char *copied_line, *token, **argument_vector, *variable, *cmde;
 	int i = 0, character_count;
+
 	if (command[0] == '\0')
 		return (NULL);
 	copied_line = _strdup(command);
