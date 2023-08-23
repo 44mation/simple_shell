@@ -22,11 +22,7 @@ unsigned int piped_characters_count(char *string, char c)
 /**
  * print_env - Prints the environment variables.
  * @status: A pointer to an integer variable to set the status.
- *
- * Each variable is printed on a separate line.
- * The 'status' parameter is used to set the status of the function.
- * Return:nothing
- */
+*/
 void print_env(int *status)
 {
 	int i;
@@ -50,7 +46,7 @@ void print_env(int *status)
  */
 
 void print_error(char *shell_name, int count,
-char *command_array, int type_of_error)
+		char *command_array, int type_of_error)
 {
 	char *counter_string;
 
@@ -79,34 +75,33 @@ char *command_array, int type_of_error)
 		write(STDERR_FILENO, "Permission denied\n", 18);
 	}
 
-	/* Free the memory allocated for the converted command count */
 	free(counter_string);
 }
 
 /**
- * process_token - Processes a token and returns the corresponding string.
+ * process_token - Processes a token
  * @token: The input token to process.
- * @status: An integer representing the status of the command.
- * Return: A dynamically allocated string representing the processed token.
- */
+ * @status: integer
+ * Return: allocated string
+*/
 char *process_token(char *token, int status)
 {
-	char *cmde, *variable;
+	char *cmnd, *variable;
 
-	cmde = NULL;
+	cmnd = NULL;
 	variable = NULL;
 
 	if (_strcmp("$$", token) == 0)
-		cmde = get_process_id();
+		cmnd = get_process_id();
 	else if (_strcmp("$?", token) == 0)
-		cmde = get_status(status);
+		cmnd = get_status(status);
 	else if (token[0] == '$' && token[1] != '\0')
 	{
 		variable = _getenv(&token[1]);
-		cmde = (variable != NULL) ? _strdup(variable) : _strdup("");
+		cmnd = (variable != NULL) ? _strdup(variable) : _strdup("");
 	}
 	else
-		cmde = _strdup(token);
-	return (cmde);
+		cmnd = _strdup(token);
+	return (cmnd);
 }
 

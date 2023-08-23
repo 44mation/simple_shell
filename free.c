@@ -14,8 +14,8 @@
  */
 
 void exit_handler(char *command, char **command_array, list_paths *current,
-char *shell_name, int count, int *status,
-list_paths *env, char **command_lines)
+		char *shell_name, int count, int *status,
+		list_paths *env, char **command_lines)
 {
 	int exit_num;
 
@@ -24,7 +24,7 @@ list_paths *env, char **command_lines)
 		if (command_array[1] == NULL)
 		{
 			free_whole(command_lines, count, env,
-			current, command, command_array);
+					current, command, command_array);
 			exit(*status);
 		}
 		else if (command_array[1] != NULL)
@@ -35,7 +35,7 @@ list_paths *env, char **command_lines)
 				if (exit_num != -1)
 				{
 					free_whole(command_lines, count, env,
-					current, command, command_array);
+							current, command, command_array);
 					exit(exit_num);
 				}
 				else
@@ -58,10 +58,9 @@ list_paths *env, char **command_lines)
  * @command_array: An array of strings containing the command and its arguments
  * @current: A pointer to a list_paths struct representing the current path.
  * @count: The command count.
- * @command_lines:.
- * @env:.
- * Return: Nothing
-*/
+ * @command_lines:the command
+ * @env: environement
+ */
 void free_whole(char **command_lines, int count, list_paths *env,
 		list_paths *current, char *command, char **command_array)
 {
@@ -76,14 +75,12 @@ void free_whole(char **command_lines, int count, list_paths *env,
 	free_all(command, command_array);
 }
 
-/* Betty Ok*/
+
 /**
-* free_all - Free allocated memory
-* @command: Pointer to the command string
-* @command_array: Pointer to the array of command and its arguments
-* This function frees the memory allocated.
-* command and its arguments.
-*/
+ * free_all - Free allocated memory
+ * @command: Pointer to the command string
+ * @command_array: Pointer to the array of command and its arguments
+ */
 void free_all(char *command, char **command_array)
 {
 	free(command);
@@ -122,9 +119,9 @@ void free_array(char **argv)
 	free(argv);
 }
 /**
-* free_vector - Frees the memory allocated for a vector of strings.
-* @vector: The vector to free.
-*/
+ * free_vector - Frees the memory allocated for a vector of strings.
+ * @vector: The vector to free.
+ */
 
 void free_vector(char **vector)
 {

@@ -2,11 +2,8 @@
 
 /**
  * paths_to_linkedlist - a function that returns a linked list of paths
- * tokenized from path enviroment variable (PEV).
- *
- * Return: a linked list, which contains the paths extracted
- * from the "PATH" environment variable.
- */
+ * Return: a linked list
+*/
 list_paths *paths_to_linkedlist()
 {
 	list_paths *paths_linkedlists;

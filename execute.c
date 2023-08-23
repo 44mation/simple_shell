@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * command_executer - Executes commands given by user.
+ * command_execute - Executes commands given by user.
  * @path: The path of the command to execute.
  * @av: An array of strings containing the command and its arguments.
  * @env: An array of strings representing the environment variables.
  * @status: A pointer to an integer variable to set the status.
  * Returns: Nothing.
  */
-void command_executer(char *path, char **av, char **env, int *status)
+void command_execute(char *path, char **av, char **env, int *status)
 {
 	pid_t parent_id;
 

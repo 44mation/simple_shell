@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * builtin_handler - Handles built-in commands in the shell.
+ * handle_builtin - Handles built-in commands in the shell.
  * @command: original command entered by the user.
  * @command_array: An array of strings containing the parsed command.
  * @current: A pointer to a list_paths struct representing the current path.
@@ -12,10 +12,10 @@
  * @argv: argument vector
  * @command_lines: dunno what to put here
  * Return:0 success and -1 in error
-*/
-int builtin_handler(char *command, char **command_array, list_paths *current,
-char *shell_name, int count, int *status,
-list_paths *env_list, char **command_lines, char **argv)
+ */
+int handle_builtin(char *command, char **command_array, list_paths *current,
+		char *shell_name, int count, int *status,
+		list_paths *env_list, char **command_lines, char **argv)
 {
 	int i, n;
 	char *built_in[] = {"env", "exit", "cd", "setenv"};
@@ -41,7 +41,7 @@ list_paths *env_list, char **command_lines, char **argv)
 			break;
 		case 1:
 			exit_handler(command, command_array,
-			current, shell_name, count, status, env_list, command_lines);
+					current, shell_name, count, status, env_list, command_lines);
 			break;
 		case 2:
 			custom_cd(command_array, argv);
@@ -56,12 +56,12 @@ list_paths *env_list, char **command_lines, char **argv)
 }
 
 /**
-* cant_open_handler - handles errors that occur when a file cannot be opened
-* @program_name: the name of the program attempting to open the file
-* @counter: a counter variable to keep track.
-* @file_name: the name of the file that cannot be opened....idan
-* Return : Nothing
-*/
+ * cant_open_handler - handles errors that occur when a file cannot be opened
+ * @program_name: the name of the program attempting to open the file
+ * @counter: a counter variable to keep track.
+ * @file_name: the name of the file that cannot be opened....idan
+ * Return : Nothing
+ */
 void cant_open_handler(char *program_name, int counter, char *file_name)
 {
 
@@ -95,4 +95,32 @@ unsigned int char_count(char *string, char character)
 		string++;
 	}
 	return (counter + 1);
+}
+
+/**
+ * directory_check - checks if a directory exists and is accessible
+ * @command: the name of the directory to check
+ * @argument_vector: arguments
+ * @count: count
+ * @command_array: command array
+ * @status: the status
+ * @command_line_before: command line
+ * Return: 1 if the directory exists and is accessible, else 0
+*/
+int check_dir(char *command, char **argument_vector, int count,
+		char **command_array, int *status, char *command_line_before)
+{
+	struct stat st;
+
+	if (stat(command, &st) == 0)
+	{
+		if (S_ISDIR(st.st_mode))
+		{
+			print_error(argument_vector[0], count, command_array[0], PERMISSION_DENIED);
+			*status = PERMISSION_DENIED;
+			free_all(command_line_before, command_array);
+			return (0);
+		}
+	}
+	return (-1);
 }
