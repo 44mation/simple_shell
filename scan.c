@@ -1,4 +1,5 @@
 #include"shell.h"
+
 /**
  * scan_cmd_user - Scans and retrieves user input command.
  *
@@ -19,7 +20,7 @@ char *scan_cmd_user(list_paths *current)
 	{
 		/*write new line and free*/
 		write(STDOUT_FILENO, "\n", 1);
-		free_list(current);
+		free_linkedlist(current);
 		free(command);
 		exit(0);
 	}

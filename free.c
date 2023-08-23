@@ -71,8 +71,8 @@ void free_whole(char **command_lines, int count, list_paths *env,
 		if (command_lines)
 			free(command_lines);
 	}
-	free_list(env);
-	free_list(current);
+	free_linkedlist(env);
+	free_linkedlist(current);
 	free_all(command, command_array);
 }
 

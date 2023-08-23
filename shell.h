@@ -48,7 +48,9 @@ int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 int _atoi(char *s);
-/*----------*/
+
+/*----------------------------------*/
+
 void print_env(int *status);
 int check_mode(int argc);
 char *check_access(char *line, list_paths *path_list);
@@ -58,7 +60,7 @@ void free_all(char *command, char **command_array);
 void command_executer(char *path, char **av, char **env, int *status);
 void scan_cmd_file(char *file);
 char *check_input_file(char *file);
-void free_list(list_paths *head);
+void free_linkedlist(list_paths *head);
 char **line_to_vector(char *line, int status);
 char *num_to_char(int num);
 void print_error(char *shell_name, int count,
@@ -66,16 +68,16 @@ char *command_array, int type_of_error);
 char *get_status(int n);
 char *get_process_id();
 char *_getenv(const char *name);
-int builtin_handler(char *command, char **command_array, list_paths *current,
+int handle_builtin(char *command, char **command_array, list_paths *current,
 char *shell_name, int count, int *status,
 list_paths *env_list, char **command_lines, char **argv);
-void nonbuiltin_hndler(char **command_array, char *env[], int *status,
+void handle_nonbuiltin(char **command_array, char *env[], int *status,
 int count, list_paths *current, char *argv[]);
 int custom_cd(char **command_array, char **argument_vector);
 void custom_setenv(char *key, char *value, list_paths *current);
 char **scan_command_files(int op_mode, char *file_name, char *shell_name);
 char **noninteractive_files_handler(char *file_name, char *shell_name);
-int dir_check(char *command, char **argument_vector, int count,
+int check_dir(char *command, char **argument_vector, int count,
 char **command_array, int *status, char *command_line_before);
 char *number_to_character(int number);
 char **text_to_array(char *text_read);

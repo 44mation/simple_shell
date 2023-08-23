@@ -6,7 +6,7 @@
  *
  * Return: a linked list, which contains the paths extracted
  * from the "PATH" environment variable.
-*/
+ */
 list_paths *paths_to_linkedlist()
 {
 	list_paths *paths_linkedlists;
@@ -29,16 +29,16 @@ list_paths *paths_to_linkedlist()
 		/*adding each token in path as a node in LL */
 		add_node(&paths_linkedlists, token);
 		/*
-		* each call will return the next token in the
-		* string until there are no more tokens left
-		*/
+		 * each call will return the next token in the
+		 * string until there are no more tokens left
+		 */
 		token = strtok(NULL, ":");
 	}
 	free(copied_variable);
 	/*
-	* returns a linked list, which contains the paths extracted from
-	* the "PATH" environment variable.
-	*/
+	 * returns a linked list, which contains the paths extracted from
+	 * the "PATH" environment variable.
+	 */
 	return (paths_linkedlists);
 }
 
@@ -47,7 +47,7 @@ list_paths *paths_to_linkedlist()
  * @head: pointer to the head of list with the type list_paths
  * @path: pointer to path.
  * Return: the address of the new element, or NULL if it failed
-*/
+ */
 list_paths *add_node(list_paths **head, char *path)
 {
 	list_paths *new;
@@ -68,16 +68,16 @@ list_paths *add_node(list_paths **head, char *path)
 
 	if (path)
 	{
-	/*duplicating the contents of path in path element of the new node created*/
-	string_path = _strdup(path);
-	if (string_path == NULL)
-	{
-		free(new);
-		return (NULL);
-	}
-	/*updating len element with the length of the new path entered*/
-	new->len = i;
-	new->path = string_path;
+		/*duplicating the contents of path in path element of the new node created*/
+		string_path = _strdup(path);
+		if (string_path == NULL)
+		{
+			free(new);
+			return (NULL);
+		}
+		/*updating len element with the length of the new path entered*/
+		new->len = i;
+		new->path = string_path;
 	}
 	else
 	{
@@ -92,28 +92,22 @@ list_paths *add_node(list_paths **head, char *path)
 }
 
 /**
-* free_list - Frees a singly linked list
-* @head: Pointer to the head of the list
+ * free_linkedlist - Frees a singly linked list
+ * @list_head: Pointer to the head of the list
 */
-void free_list(list_paths *head)
+
+void free_linkedlist(list_paths *list_head)
 {
-	list_paths *ptr = head;
-	list_paths *nextNode;
+	list_paths *current_node = list_head;
+	list_paths *next_node;
 
-	while (ptr != NULL)
+	while (current_node != NULL)
 	{
-		/**
-		* saves a pointer to the next node in the list
-		* so we don't loose track of the linked list
-		*/
-
-		nextNode = ptr->next;
-		free(ptr->path);
-		free(ptr);
-		/*moving the pointer to the next node*/
-		ptr = nextNode;
+		next_node = current_node->next;
+		free(current_node->path);
+		free(current_node);
+		current_node = next_node;
 	}
-
 }
 
 /**
@@ -121,7 +115,7 @@ void free_list(list_paths *head)
  * If str is NULL, print [0] (nil)
  * @h: pointer to the head of list with the type list_paths
  * Return: the number of nodes
-*/
+ */
 size_t print_list(const list_paths *h)
 {
 	int count;
