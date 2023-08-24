@@ -94,12 +94,12 @@ char **line_to_vector(char *command, int status)
 	return (argument_vector);
 }
 /**
- * flags_handler - .
- * @token:.
- * @command:.
- * @argument_vector:.
- * @status:.
- * Return:.
+ * flags_handler - flag
+ * @token: the token
+ * @command: the command
+ * @argument_vector: the argument vector
+ * @status: the status
+ * Return: success or fail
  */
 char *flags_handler(char *token, char *command,
 		char **argument_vector, int status)

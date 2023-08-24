@@ -14,10 +14,10 @@ int main(int argc, char *argv[], char *env[])
 	list_paths *path_list;
 
 	exit_status = &status;
-	oper_mode = determine_operation_mode(argc);
+	oper_mode = check_mode(argc);
 	if (oper_mode != INTERACTIVE_MODE)
-		command_lines = read_command_files(oper_mode, argv[1], argv[0]);
-	path_list = convert_paths_to_linkedlist();
+		command_lines = scan_command_files(oper_mode, argv[1], argv[0]);
+	path_list = paths_to_linkedlist();
 	while (non_interactive && ++count)
 	{
 		if (oper_mode == NON_INTERACTIVE_MODE || oper_mode == NON_INTERACTIVE_PIPE)
@@ -31,10 +31,10 @@ int main(int argc, char *argv[], char *env[])
 			}
 		}
 		else if (oper_mode == INTERACTIVE_MODE)
-			command = get_user_input(path_list);
+			command = scan_cmd_user(path_list);
 		if (!command)
 			continue;
-		cmd_arr = split_command_line(command, exit_status);
+		cmd_arr = line_to_vector(command, *exit_status);
 		if (!cmd_arr)
 		{
 			free(command);

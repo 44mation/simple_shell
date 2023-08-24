@@ -35,6 +35,13 @@ typedef struct list_paths
 	struct list_paths *next;
 } list_paths;
 
+extern char **environ;
+list_paths *paths_to_linkedlist();
+size_t print_list(const list_paths *h);
+list_paths *add_node(list_paths **head, char *path);
+unsigned int char_count(char *string, char character);
+
+
 int handle_builtin(char *command, char **command_array, list_paths *current,
 		char *shell_name, int count, int *status,
 		list_paths *env_list, char **command_lines, char **argv);
